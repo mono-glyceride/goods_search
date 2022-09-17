@@ -1,0 +1,2 @@
+class CharacterTweetMap < ApplicationRecord
+end
