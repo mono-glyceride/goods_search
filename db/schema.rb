@@ -31,13 +31,8 @@ ActiveRecord::Schema.define(version: 2022_09_17_095109) do
     t.index ["name"], name: "index_items_on_name"
   end
 
-  create_table "keywords", force: :cascade do |t|
-    t.string "body", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "serch_conditions", force: :cascade do |t|
+    t.string "keywords"
     t.integer "user_id", null: false
     t.integer "wanted_item_id"
     t.integer "owned_item_id"
