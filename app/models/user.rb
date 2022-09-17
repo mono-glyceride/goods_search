@@ -6,6 +6,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :omniauthable
          
+  has_many :search_conditions, dependent: :destroy
   # Twitter認証ログイン用
   # ユーザーの情報があれば探し、無ければ作成する
   def self.find_for_oauth(auth)
