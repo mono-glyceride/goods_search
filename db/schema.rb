@@ -14,14 +14,14 @@ ActiveRecord::Schema.define(version: 2022_09_17_095109) do
 
   create_table "collections", force: :cascade do |t|
     t.integer "tweet_id", null: false
-    t.integer "wanted_item_id"
-    t.integer "owned_item_id"
+    t.integer "supplying_id"
+    t.integer "demanding_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index "\"tweet\", \"wanted_item\", \"owned_item\"", name: "index_collections_on_tweet_and_wanted_item_and_owned_item", unique: true
-    t.index ["owned_item_id"], name: "index_collections_on_owned_item_id"
+    t.index "\"tweet\", \"supplying\", \"demanding\"", name: "index_collections_on_tweet_and_supplying_and_demanding", unique: true
+    t.index ["demanding_id"], name: "index_collections_on_demanding_id"
+    t.index ["supplying_id"], name: "index_collections_on_supplying_id"
     t.index ["tweet_id"], name: "index_collections_on_tweet_id"
-    t.index ["wanted_item_id"], name: "index_collections_on_wanted_item_id"
   end
 
   create_table "items", force: :cascade do |t|
@@ -74,8 +74,8 @@ ActiveRecord::Schema.define(version: 2022_09_17_095109) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "collections", "items", column: "owned_item_id"
-  add_foreign_key "collections", "items", column: "wanted_item_id"
+  add_foreign_key "collections", "items", column: "demanding_id"
+  add_foreign_key "collections", "items", column: "supplying_id"
   add_foreign_key "collections", "tweets"
   add_foreign_key "serch_conditions", "items", column: "owned_item_id"
   add_foreign_key "serch_conditions", "items", column: "wanted_item_id"
