@@ -3,5 +3,7 @@ class Collection < ApplicationRecord
 	belongs_to :demanding, class_name: 'Item', optional: true
 	#ツイッタラーが供給するグッズ
   belongs_to :supplying, class_name: 'Item', optional: true
-  belogns_to :tweet
+  belongs_to :tweet
+  
+  validates :tweet_id, presence: true
 end
