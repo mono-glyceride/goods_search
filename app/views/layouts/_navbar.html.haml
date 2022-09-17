@@ -4,7 +4,7 @@
       .col-12.row
         .col-2
           - if user_signed_in?
-            = image_tag @user.image, alt: "icon", class: "image rounded-circle", width: 40, height: 40
+            = image_tag current_user.image, alt: "icon", class: "image rounded-circle", width: 40, height: 40
         .col-2.offset-1.d-flex.align-items-center
           推しグッズナビ
     %button.navbar-toggler{"aria-controls" => "navbarNav", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarNav", "data-toggle" => "collapse", :type => "button"}
