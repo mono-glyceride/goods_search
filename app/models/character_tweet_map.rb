@@ -1,2 +1,0 @@
-class CharacterTweetMap < ApplicationRecord
-end
