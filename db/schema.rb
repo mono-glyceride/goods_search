@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_17_085927) do
+ActiveRecord::Schema.define(version: 2022_09_17_090522) do
 
   create_table "characters", force: :cascade do |t|
     t.string "name", null: false
@@ -23,6 +23,17 @@ ActiveRecord::Schema.define(version: 2022_09_17_085927) do
     t.string "body", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "serch_conditions", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "character_user_want_id"
+    t.integer "character_user_have_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["character_user_have_id"], name: "index_serch_conditions_on_character_user_have_id"
+    t.index ["character_user_want_id"], name: "index_serch_conditions_on_character_user_want_id"
+    t.index ["user_id"], name: "index_serch_conditions_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -42,4 +53,7 @@ ActiveRecord::Schema.define(version: 2022_09_17_085927) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "serch_conditions", "characters", column: "character_user_have_id"
+  add_foreign_key "serch_conditions", "characters", column: "character_user_want_id"
+  add_foreign_key "serch_conditions", "users"
 end

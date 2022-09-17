@@ -1,0 +1,2 @@
+class SerchCondition < ApplicationRecord
+end
