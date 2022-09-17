@@ -8,4 +8,5 @@ class Item < ApplicationRecord
   # ツイッタラーが供給するグッズ
   has_many :supplies, class_name: 'Collection', foreign_key: 'supplying'
   # owned_informations == demands && wanted_information == supplies の時に取引が成立する公算
+  validates :name, presence: true, uniqueness: true, length: { maximum: 255 }
 end
