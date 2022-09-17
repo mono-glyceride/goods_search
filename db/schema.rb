@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_17_090522) do
+ActiveRecord::Schema.define(version: 2022_09_17_092938) do
 
   create_table "characters", force: :cascade do |t|
     t.string "name", null: false
@@ -34,6 +34,20 @@ ActiveRecord::Schema.define(version: 2022_09_17_090522) do
     t.index ["character_user_have_id"], name: "index_serch_conditions_on_character_user_have_id"
     t.index ["character_user_want_id"], name: "index_serch_conditions_on_character_user_want_id"
     t.index ["user_id"], name: "index_serch_conditions_on_user_id"
+  end
+
+  create_table "tweets", force: :cascade do |t|
+    t.string "param", null: false
+    t.string "tweet_user_name", null: false
+    t.string "tweet_user_icon", null: false
+    t.string "image_1"
+    t.string "image_2"
+    t.string "image_3"
+    t.string "image_4"
+    t.string "body", null: false
+    t.boolean "send", default: false, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|
