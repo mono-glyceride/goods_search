@@ -1,9 +1,6 @@
 Rails.application.routes.draw do
-	
-  get 'lists/new'
-  get 'lists/create'
-  get 'lists/show'
-	root 'lists#index'
+	root 'search_conditions#index'
+	resources :search_conditions
 	
 	devise_for :users, controllers: {
 	  sessions: 'users/sessions',
