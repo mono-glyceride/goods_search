@@ -1,10 +1,21 @@
 %ul.list-group
   = form_with url: lists_create_path do |f|
     .form-group.lists
-      = f.label :name, '管理するリスト'
-      = f.select :name, {'ざっくりシャドウエフェクト　ベータ版': 1, '和風髪飾りアクセサリ　配布用': 2}, { include_blank: '選択してください'}, { class: 'form-control' , required: true }
+      = f.label :name, 'あなたが求めるキャラ', class: 'm-0'
+      %small.text-danger 必須
+      %br
+      %small 1キャラのみご入力ください
+      = f.text_field :name, class: 'form-control', size: 30
     .form-group.lists
-      = f.check_box :checkbox, id: :samurai_checkbox,:as => :boolean
-      = f.label :name, 'ツイート１'
+      = f.label :name, 'あなたが譲るキャラ', class: 'm-0'
+      %small.text-danger 必須
+      %br
+      %small 空白区切りで複数登録できます
+      = f.text_field :name, class: 'form-control', size: 30
+    .form-group.lists
+      = f.label :name, 'キーワード', class: 'm-0'
+      %br
+      %small 1キーワードのみご入力ください
+      = f.text_field :name, class: 'form-control', size: 30
     .lists
-      = f.submit "この設定でリストを管理" ,{ class: 'btn cyaan to_lists_new btn-block'}
+      = f.submit "この検索条件を登録" ,{ class: 'btn cyaan to_lists_new btn-block'}
