@@ -6,6 +6,8 @@ class CreateCollections < ActiveRecord::Migration[6.0]
       t.references :demanding, foreign_key: { to_table: 'items' }
       t.timestamps
     end
-    add_index  :collections, [:tweet, :supplying, :demanding], unique: true
+    # 必ずしも需要と供給両方のグッズが見つかるとは限らないためコメントアウト
+    # 求めるグッズは分かっても、譲るグッズの分析ができない、とか
+    # add_index  :collections, [:tweet, :supplying, :demanding], unique: true
   end
 end

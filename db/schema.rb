@@ -18,7 +18,6 @@ ActiveRecord::Schema.define(version: 2022_09_17_095109) do
     t.integer "demanding_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index "\"tweet\", \"supplying\", \"demanding\"", name: "index_collections_on_tweet_and_supplying_and_demanding", unique: true
     t.index ["demanding_id"], name: "index_collections_on_demanding_id"
     t.index ["supplying_id"], name: "index_collections_on_supplying_id"
     t.index ["tweet_id"], name: "index_collections_on_tweet_id"
