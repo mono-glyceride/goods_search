@@ -4,6 +4,7 @@ class SerchCondition < ApplicationRecord
   belongs_to :owned_item,  class_name: 'Item', optional: true
   has_many :matchings, dependent: :destroy
   has_many :tweets, through: :matchings
+  has_many :keywords, dependent: :destroy
   
   validates :user_id, presence: true
   validate :required_either_wanted_item_or_owned_item
