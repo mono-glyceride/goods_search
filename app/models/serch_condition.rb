@@ -3,7 +3,6 @@ class SerchCondition < ApplicationRecord
 	belongs_to :wanted_item, class_name: 'Item', optional: true
   belongs_to :owned_item,  class_name: 'Item', optional: true
 
-  validates :keywords, length: { maximum: 255 }
   validates :user_id, presence: true
   validate :required_either_wanted_item_or_owned_item
   def required_either_email_or_phone
