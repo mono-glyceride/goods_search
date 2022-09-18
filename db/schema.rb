@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_18_013017) do
+ActiveRecord::Schema.define(version: 2022_09_18_015645) do
 
   create_table "collections", force: :cascade do |t|
     t.integer "tweet_id", null: false
@@ -21,6 +21,14 @@ ActiveRecord::Schema.define(version: 2022_09_18_013017) do
     t.index ["demanding_id"], name: "index_collections_on_demanding_id"
     t.index ["supplying_id"], name: "index_collections_on_supplying_id"
     t.index ["tweet_id"], name: "index_collections_on_tweet_id"
+  end
+
+  create_table "configs", force: :cascade do |t|
+    t.boolean "notify_by_dm", default: true, null: false
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_configs_on_user_id"
   end
 
   create_table "items", force: :cascade do |t|
@@ -86,6 +94,7 @@ ActiveRecord::Schema.define(version: 2022_09_18_013017) do
   add_foreign_key "collections", "items", column: "demanding_id"
   add_foreign_key "collections", "items", column: "supplying_id"
   add_foreign_key "collections", "tweets"
+  add_foreign_key "configs", "users"
   add_foreign_key "matchings", "serch_conditions"
   add_foreign_key "matchings", "tweets"
   add_foreign_key "serch_conditions", "items", column: "owned_item_id"
