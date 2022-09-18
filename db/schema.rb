@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_18_015645) do
+ActiveRecord::Schema.define(version: 2022_09_18_020606) do
 
   create_table "collections", force: :cascade do |t|
     t.integer "tweet_id", null: false
@@ -36,6 +36,14 @@ ActiveRecord::Schema.define(version: 2022_09_18_015645) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["name"], name: "index_items_on_name"
+  end
+
+  create_table "keywords", force: :cascade do |t|
+    t.integer "serch_condition_id", null: false
+    t.string "keyword", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["serch_condition_id"], name: "index_keywords_on_serch_condition_id"
   end
 
   create_table "matchings", force: :cascade do |t|
@@ -95,6 +103,7 @@ ActiveRecord::Schema.define(version: 2022_09_18_015645) do
   add_foreign_key "collections", "items", column: "supplying_id"
   add_foreign_key "collections", "tweets"
   add_foreign_key "configs", "users"
+  add_foreign_key "keywords", "serch_conditions"
   add_foreign_key "matchings", "serch_conditions"
   add_foreign_key "matchings", "tweets"
   add_foreign_key "serch_conditions", "items", column: "owned_item_id"
