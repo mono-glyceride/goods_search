@@ -7,6 +7,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, :omniauthable
          
   has_many :search_conditions, dependent: :destroy
+  has_one :config, dependent: :destroy
   # Twitter認証ログイン用
   # ユーザーの情報があれば探し、無ければ作成する
   def self.find_for_oauth(auth)
