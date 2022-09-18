@@ -1,0 +1,13 @@
+%ul.list-group
+  = form_with url: lists_create_path do |f|
+    .form-group.lists
+      = f.label :name, '管理するリスト'
+      %br
+        %small
+          = '※目的のリストが表示されない場合、お手数ですが一度ログアウトして再度のログインをお願いいたします。'
+      = f.select :name, {'ざっくりシャドウエフェクト　ベータ版': 1, '和風髪飾りアクセサリ　配布用': 2}, { include_blank: '選択してください'}, { class: 'form-control' , required: true }
+    .form-group.lists
+      = f.check_box :checkbox, id: :samurai_checkbox,:as => :boolean
+      = f.label :name, 'ツイート１'
+    .lists
+      = f.submit "この設定でリストを管理" ,{ class: 'btn cyaan to_lists_new btn-block'}
