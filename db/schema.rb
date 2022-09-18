@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_17_095109) do
+ActiveRecord::Schema.define(version: 2022_09_18_013017) do
 
   create_table "collections", force: :cascade do |t|
     t.integer "tweet_id", null: false
@@ -28,6 +28,16 @@ ActiveRecord::Schema.define(version: 2022_09_17_095109) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["name"], name: "index_items_on_name"
+  end
+
+  create_table "matchings", force: :cascade do |t|
+    t.integer "tweet_id", null: false
+    t.integer "serch_condition_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index "\"tweet_id\", \"serch_condition_\"", name: "index_matchings_on_tweet_id_and_serch_condition_", unique: true
+    t.index ["serch_condition_id"], name: "index_matchings_on_serch_condition_id"
+    t.index ["tweet_id"], name: "index_matchings_on_tweet_id"
   end
 
   create_table "serch_conditions", force: :cascade do |t|
@@ -76,6 +86,8 @@ ActiveRecord::Schema.define(version: 2022_09_17_095109) do
   add_foreign_key "collections", "items", column: "demanding_id"
   add_foreign_key "collections", "items", column: "supplying_id"
   add_foreign_key "collections", "tweets"
+  add_foreign_key "matchings", "serch_conditions"
+  add_foreign_key "matchings", "tweets"
   add_foreign_key "serch_conditions", "items", column: "owned_item_id"
   add_foreign_key "serch_conditions", "items", column: "wanted_item_id"
   add_foreign_key "serch_conditions", "users"
