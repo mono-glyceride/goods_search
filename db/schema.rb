@@ -10,17 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_18_020606) do
+ActiveRecord::Schema.define(version: 2022_09_20_142741) do
 
-  create_table "collections", force: :cascade do |t|
-    t.integer "tweet_id", null: false
-    t.integer "supplying_id"
-    t.integer "demanding_id"
+  create_table "combinations", force: :cascade do |t|
+    t.string "wanted_item", null: false
+    t.string "owned_item", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["demanding_id"], name: "index_collections_on_demanding_id"
-    t.index ["supplying_id"], name: "index_collections_on_supplying_id"
-    t.index ["tweet_id"], name: "index_collections_on_tweet_id"
+    t.index ["owned_item"], name: "index_combinations_on_owned_item"
+    t.index ["wanted_item", "owned_item"], name: "index_combinations_on_wanted_item_and_owned_item", unique: true
+    t.index ["wanted_item"], name: "index_combinations_on_wanted_item"
+  end
+
+  create_table "combinations_registrations", force: :cascade do |t|
+    t.integer "registrations_id", null: false
+    t.integer "combinations_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["combinations_id"], name: "index_combinations_registrations_on_combinations_id"
+    t.index ["registrations_id"], name: "index_combinations_registrations_on_registrations_id"
   end
 
   create_table "configs", force: :cascade do |t|
@@ -31,13 +39,6 @@ ActiveRecord::Schema.define(version: 2022_09_18_020606) do
     t.index ["user_id"], name: "index_configs_on_user_id"
   end
 
-  create_table "items", force: :cascade do |t|
-    t.string "name", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["name"], name: "index_items_on_name"
-  end
-
   create_table "keywords", force: :cascade do |t|
     t.integer "serch_condition_id", null: false
     t.string "keyword", null: false
@@ -46,14 +47,24 @@ ActiveRecord::Schema.define(version: 2022_09_18_020606) do
     t.index ["serch_condition_id"], name: "index_keywords_on_serch_condition_id"
   end
 
-  create_table "matchings", force: :cascade do |t|
-    t.integer "tweet_id", null: false
-    t.integer "serch_condition_id", null: false
+  create_table "matches", force: :cascade do |t|
+    t.integer "registrations_id", null: false
+    t.integer "tweets_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index "\"tweet_id\", \"serch_condition_\"", name: "index_matchings_on_tweet_id_and_serch_condition_", unique: true
-    t.index ["serch_condition_id"], name: "index_matchings_on_serch_condition_id"
-    t.index ["tweet_id"], name: "index_matchings_on_tweet_id"
+    t.index "\"registration_id\", \"tweet_id\"", name: "index_matches_on_registration_id_and_tweet_id", unique: true
+    t.index ["registrations_id"], name: "index_matches_on_registrations_id"
+    t.index ["tweets_id"], name: "index_matches_on_tweets_id"
+  end
+
+  create_table "offers", force: :cascade do |t|
+    t.integer "combinations_id", null: false
+    t.integer "tweets_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index "\"combination_id\", \"tweet_id\"", name: "index_offers_on_combination_id_and_tweet_id", unique: true
+    t.index ["combinations_id"], name: "index_offers_on_combinations_id"
+    t.index ["tweets_id"], name: "index_offers_on_tweets_id"
   end
 
   create_table "registrations", force: :cascade do |t|
@@ -94,12 +105,13 @@ ActiveRecord::Schema.define(version: 2022_09_18_020606) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "collections", "items", column: "demanding_id"
-  add_foreign_key "collections", "items", column: "supplying_id"
-  add_foreign_key "collections", "tweets"
+  add_foreign_key "combinations_registrations", "combinations", column: "combinations_id"
+  add_foreign_key "combinations_registrations", "registrations", column: "registrations_id"
   add_foreign_key "configs", "users"
   add_foreign_key "keywords", "serch_conditions"
-  add_foreign_key "matchings", "serch_conditions"
-  add_foreign_key "matchings", "tweets"
+  add_foreign_key "matches", "registrations", column: "registrations_id"
+  add_foreign_key "matches", "tweets", column: "tweets_id"
+  add_foreign_key "offers", "combinations", column: "combinations_id"
+  add_foreign_key "offers", "tweets", column: "tweets_id"
   add_foreign_key "registrations", "users"
 end
