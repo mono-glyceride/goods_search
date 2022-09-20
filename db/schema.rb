@@ -56,16 +56,11 @@ ActiveRecord::Schema.define(version: 2022_09_18_020606) do
     t.index ["tweet_id"], name: "index_matchings_on_tweet_id"
   end
 
-  create_table "serch_conditions", force: :cascade do |t|
-    t.string "keywords"
+  create_table "registrations", force: :cascade do |t|
     t.integer "user_id", null: false
-    t.integer "wanted_item_id"
-    t.integer "owned_item_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["owned_item_id"], name: "index_serch_conditions_on_owned_item_id"
-    t.index ["user_id"], name: "index_serch_conditions_on_user_id"
-    t.index ["wanted_item_id"], name: "index_serch_conditions_on_wanted_item_id"
+    t.index ["user_id"], name: "index_registrations_on_user_id"
   end
 
   create_table "tweets", force: :cascade do |t|
@@ -106,7 +101,5 @@ ActiveRecord::Schema.define(version: 2022_09_18_020606) do
   add_foreign_key "keywords", "serch_conditions"
   add_foreign_key "matchings", "serch_conditions"
   add_foreign_key "matchings", "tweets"
-  add_foreign_key "serch_conditions", "items", column: "owned_item_id"
-  add_foreign_key "serch_conditions", "items", column: "wanted_item_id"
-  add_foreign_key "serch_conditions", "users"
+  add_foreign_key "registrations", "users"
 end
