@@ -1,4 +1,4 @@
 class Match < ApplicationRecord
-	belogns_to :tweet
-	belogns_to :registration
+	belongs_to :tweet
+	belongs_to :registration
 end

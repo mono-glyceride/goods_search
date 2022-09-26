@@ -1,4 +1,4 @@
 class ItemsRegistration < ApplicationRecord
-	belogns_to :registration
-	belogns_to :items
+	belongs_to :registration
+	belongs_to :items
 end
