@@ -4,7 +4,7 @@ class Tweet < ApplicationRecord
 
   with_options length: { maximum: 255 } do
     with_options presence: true do
-      validates :param, uniqueness: true
+      validates :param
       validates :tweet_user_name
       validates :tweet_user_icon
       validates :body
