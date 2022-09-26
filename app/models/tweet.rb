@@ -1,7 +1,5 @@
 class Tweet < ApplicationRecord
-	has_many :collections, dependent: :destroy
-	has_many :matchings, dependent: :destroy
-	has_many :serch_condition, through: :matchings
+	has_many :offers, dependent: :destroy
 	
 	with_options length: { maximum: 255 } do
 		with_options presence: true do
