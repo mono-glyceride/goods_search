@@ -1,5 +1,6 @@
 class Tweet < ApplicationRecord
 	has_many :offers, dependent: :destroy
+	has_many :matches, dependent: :destroy
 	
 	with_options length: { maximum: 255 } do
 		with_options presence: true do
