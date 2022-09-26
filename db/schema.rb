@@ -78,10 +78,10 @@ ActiveRecord::Schema.define(version: 2022_09_20_142741) do
     t.string "param", null: false
     t.string "tweet_user_name", null: false
     t.string "tweet_user_icon", null: false
-    t.string "image_1"
-    t.string "image_2"
-    t.string "image_3"
-    t.string "image_4"
+    t.string "image1_url"
+    t.string "image2_url"
+    t.string "image3_url"
+    t.string "image4_url"
     t.string "body", null: false
     t.boolean "send", default: false, null: false
     t.datetime "created_at", precision: 6, null: false

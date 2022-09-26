@@ -9,10 +9,10 @@ class Tweet < ApplicationRecord
       validates :tweet_user_icon
       validates :body
     end
-    validates :image_1
-    validates :image_2
-    validates :image_3
-    validates :image_4
+    validates :image1_url
+    validates :image2_url
+    validates :image3_url
+    validates :image4_url
   end
   validates :send, inclusion: { in: [true, false] }
 end

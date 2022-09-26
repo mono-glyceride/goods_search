@@ -4,10 +4,10 @@ class CreateTweets < ActiveRecord::Migration[6.0]
       t.string :param, null: false, unique: true
       t.string :tweet_user_name, null: false
       t.string :tweet_user_icon, null: false
-      t.string :image_1
-      t.string :image_2
-      t.string :image_3
-      t.string :image_4
+      t.string :image1_url
+      t.string :image2_url
+      t.string :image3_url
+      t.string :image4_url
       t.string :body, null: false
       t.boolean :send, null: false, default: false
       t.timestamps
