@@ -8,6 +8,18 @@ class User < ApplicationRecord
 
   has_many :registrations, dependent: :destroy
   has_one :config, dependent: :destroy
+
+  with_options presence: true do
+    with_options length: { maximum: 255 } do
+      validates :email
+      validates :encrypted_password
+      validates :uid, uniqueness: true
+      validates :provider
+      validates :name
+      validates :image
+      validates :nickname
+    end
+  end
   # Twitter認証ログイン用
   # ユーザーの情報があれば探し、無ければ作成する
   def self.find_for_oauth(auth)
