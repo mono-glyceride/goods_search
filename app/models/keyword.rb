@@ -1,3 +1,3 @@
 class Keyword < ApplicationRecord
-	belongs_to :registration
+  belongs_to :registration
 end

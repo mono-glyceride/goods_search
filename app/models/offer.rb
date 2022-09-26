@@ -1,4 +1,4 @@
 class Offer < ApplicationRecord
-	belongs_to :items
-	belongs_to :tweets
+  belongs_to :items
+  belongs_to :tweets
 end
