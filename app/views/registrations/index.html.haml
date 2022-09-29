@@ -1,0 +1,47 @@
+.lists
+  = link_to("検索するグッズ情報を追加", {:controller => :registrations, :action => :new}, class: "btn cyaan to_lists_new")
+  %h2.col 管理中のリスト
+  %ul.list-group
+    %li.list-group-item
+      = link_to(registration_path( id: 1 )) do
+        %p.row
+          %span.col-11
+            求：ルフィ
+            %br
+            譲：ウソップ、ロビン
+            %br
+          %span.col-1.d-flex.align-items-center.p-0
+            %span.badge.n-badge.cyaan.d-flex.align-items-center.justify-content-center 1
+    %li.list-group-item
+      = link_to(registration_path( id: 1 )) do
+        %p.row
+          %span.col-11
+            求：サンジ
+            %br
+            譲：ゾロ、チョッパー、ナミ
+            %br
+            輩缶
+          %span.col-1.d-flex.align-items-center.p-0
+            %span.badge.n-badge.cyaan.d-flex.align-items-center.justify-content-center 5
+    %li.list-group-item
+      = link_to(registration_path( id: 1 )) do
+        %p.row
+          %span.col-11
+            求：サンジ
+            %br
+            譲：ゾロ、チョッパー、ナミ
+            %br
+            輩缶
+          %span.col-1.d-flex.align-items-center.p-0
+            %span.badge.n-badge.cyaan.d-flex.align-items-center.justify-content-center 10
+    %li.list-group-item
+      = link_to(registration_path( id: 1 )) do
+        %p.row
+          %span.col-11
+            求：サンジ
+            %br
+            譲：ゾロ、チョッパー、ナミ
+            %br
+            輩缶
+          %span.col-1.d-flex.align-items-center.p-0
+            %span.badge.n-badge.cyaan.d-flex.align-items-center.justify-content-center 2
