@@ -1,2 +1,0 @@
-class SearchConditionsController < ApplicationController
-end
