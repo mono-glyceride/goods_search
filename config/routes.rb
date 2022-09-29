@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-	root 'search_conditions#index'
-	resources :search_conditions
+	root 'registrations#index'
+	resources :registrations
 	
 	devise_for :users, controllers: {
 	  sessions: 'users/sessions',
