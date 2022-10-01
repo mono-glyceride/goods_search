@@ -1,0 +1,18 @@
+%ul.list-group.row
+  = form_with model: @registration, class: 'col-md-8 col-12 mx-auto' do |f|
+    .form-group.lists
+      探したいグッズの情報を入力してください。
+    .form-group.lists
+      = f.label :求, class: 'mb-0 form-label'
+      = f.text_field :wanted_item, class: 'form-control', size: 100
+      %small.form-text.text-muted 1キャラまで登録できます。
+    .form-group.lists
+      = f.label :譲, class: 'mb-0 form-label'
+      = f.text_area :owned_item, class: 'form-control', size: 100
+      %small.form-text.text-muted 空白区切りで複数のキャラクターが登録できます。
+    .form-group.lists
+      = f.label :キーワード, class: 'mb-0 form-label'
+      = f.text_area :owned_item, class: 'form-control', size: 100
+      %small.form-text.text-muted 空白区切りで複数の単語が登録できます。
+    .lists.text-right
+      = f.submit '登録' ,{ class: 'btn cyaan m-0'}
