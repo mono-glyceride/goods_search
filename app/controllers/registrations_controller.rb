@@ -5,6 +5,7 @@ class RegistrationsController < ApplicationController
   end
 
   def new
+    @registration = Registration.new
   end
 
   def create
