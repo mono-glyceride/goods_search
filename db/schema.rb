@@ -40,11 +40,11 @@ ActiveRecord::Schema.define(version: 2022_09_20_142741) do
   end
 
   create_table "keywords", force: :cascade do |t|
-    t.integer "registrations_id", null: false
+    t.integer "registration_id", null: false
     t.string "keyword", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["registrations_id"], name: "index_keywords_on_registrations_id"
+    t.index ["registration_id"], name: "index_keywords_on_registration_id"
   end
 
   create_table "matches", force: :cascade do |t|
@@ -109,7 +109,7 @@ ActiveRecord::Schema.define(version: 2022_09_20_142741) do
   add_foreign_key "configs", "users"
   add_foreign_key "items_registrations", "items", column: "items_id"
   add_foreign_key "items_registrations", "registrations", column: "registrations_id"
-  add_foreign_key "keywords", "registrations", column: "registrations_id"
+  add_foreign_key "keywords", "registrations"
   add_foreign_key "matches", "registrations", column: "registrations_id"
   add_foreign_key "matches", "tweets", column: "tweets_id"
   add_foreign_key "offers", "items", column: "items_id"
