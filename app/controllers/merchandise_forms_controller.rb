@@ -12,8 +12,9 @@ class MerchandiseFormsController < ApplicationController
   def create
     @merchandise_form = MerchandiseForm.new(merchandise_form_params)
     if @merchandise_form.valid?
-      if @merchandise_form.save(current_user)
-      end
+      @merchandise_form.save(current_user)
+      flash[:notice] = 'グッズ情報を登録しました！'
+      redirect_to root_path
     else
       render :new
     end
