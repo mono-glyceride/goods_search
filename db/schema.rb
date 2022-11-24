@@ -31,12 +31,12 @@ ActiveRecord::Schema.define(version: 2022_09_20_142741) do
   end
 
   create_table "items_registrations", force: :cascade do |t|
-    t.integer "registrations_id", null: false
-    t.integer "items_id", null: false
+    t.integer "registration_id", null: false
+    t.integer "item_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["items_id"], name: "index_items_registrations_on_items_id"
-    t.index ["registrations_id"], name: "index_items_registrations_on_registrations_id"
+    t.index ["item_id"], name: "index_items_registrations_on_item_id"
+    t.index ["registration_id"], name: "index_items_registrations_on_registration_id"
   end
 
   create_table "keywords", force: :cascade do |t|
@@ -48,23 +48,23 @@ ActiveRecord::Schema.define(version: 2022_09_20_142741) do
   end
 
   create_table "matches", force: :cascade do |t|
-    t.integer "registrations_id", null: false
-    t.integer "tweets_id", null: false
+    t.integer "registration_id", null: false
+    t.integer "tweet_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index "\"registration_id\", \"tweet_id\"", name: "index_matches_on_registration_id_and_tweet_id", unique: true
-    t.index ["registrations_id"], name: "index_matches_on_registrations_id"
-    t.index ["tweets_id"], name: "index_matches_on_tweets_id"
+    t.index ["registration_id", "tweet_id"], name: "index_matches_on_registration_id_and_tweet_id", unique: true
+    t.index ["registration_id"], name: "index_matches_on_registration_id"
+    t.index ["tweet_id"], name: "index_matches_on_tweet_id"
   end
 
   create_table "offers", force: :cascade do |t|
-    t.integer "items_id", null: false
-    t.integer "tweets_id", null: false
+    t.integer "item_id", null: false
+    t.integer "tweet_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index "\"item_id\", \"tweet_id\"", name: "index_offers_on_item_id_and_tweet_id", unique: true
-    t.index ["items_id"], name: "index_offers_on_items_id"
-    t.index ["tweets_id"], name: "index_offers_on_tweets_id"
+    t.index ["item_id", "tweet_id"], name: "index_offers_on_item_id_and_tweet_id", unique: true
+    t.index ["item_id"], name: "index_offers_on_item_id"
+    t.index ["tweet_id"], name: "index_offers_on_tweet_id"
   end
 
   create_table "registrations", force: :cascade do |t|
@@ -107,12 +107,12 @@ ActiveRecord::Schema.define(version: 2022_09_20_142741) do
   end
 
   add_foreign_key "configs", "users"
-  add_foreign_key "items_registrations", "items", column: "items_id"
-  add_foreign_key "items_registrations", "registrations", column: "registrations_id"
+  add_foreign_key "items_registrations", "items"
+  add_foreign_key "items_registrations", "registrations"
   add_foreign_key "keywords", "registrations"
-  add_foreign_key "matches", "registrations", column: "registrations_id"
-  add_foreign_key "matches", "tweets", column: "tweets_id"
-  add_foreign_key "offers", "items", column: "items_id"
-  add_foreign_key "offers", "tweets", column: "tweets_id"
+  add_foreign_key "matches", "registrations"
+  add_foreign_key "matches", "tweets"
+  add_foreign_key "offers", "items"
+  add_foreign_key "offers", "tweets"
   add_foreign_key "registrations", "users"
 end
