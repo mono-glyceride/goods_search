@@ -1,2 +1,3 @@
-%p.notice= notice
-%p.alert= alert
+.Notification.lists
+  - flash.each do |key, value|
+    = content_tag :div, value, class: ["alert-#{key}", 'text-center', 'alert']

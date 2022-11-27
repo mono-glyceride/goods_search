@@ -11,7 +11,7 @@
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
     = render 'layouts/shim'
   %body
-    = render 'layouts/flash'
     = render 'layouts/navbar'
-    %main.container
+    %main.container.mt-5
+      = render 'layouts/flash'
       = yield
