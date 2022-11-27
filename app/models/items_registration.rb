@@ -1,7 +1,7 @@
 class ItemsRegistration < ApplicationRecord
   belongs_to :registration
-  belongs_to :items
+  belongs_to :item
 
   validates :registration_id, presence: true
-  validates :items_id, presence: true, uniqueness: { scope: :registration_id }
+  validates :item_id, presence: true, uniqueness: { scope: :registration_id }
 end
