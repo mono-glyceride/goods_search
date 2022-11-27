@@ -38,8 +38,4 @@ class MerchandiseFormsController < ApplicationController
     def merchandise_form_params
       params.require(:merchandise_form).permit(:wanted_merchandise, :owned_merchandises, :keywords)
     end
-
-    def set_keyword_list
-    	keywords.split(' ')
-  	end
 end
