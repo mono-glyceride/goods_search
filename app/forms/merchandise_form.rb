@@ -15,14 +15,23 @@ class MerchandiseForm
   def save(current_user)
     # registrationの作成
     registration = current_user.registrations.create
-    # keywordの作成
+    self.create_keywords(registration) if self.keywords.present?
+    self.create_items
+    # items_registrations(中間テーブル)のレコードの作成
+    items = Item.where(wanted_item: self.wanted_merchandise, owned_item: self.build_owned_merchandise_list)
+    registration.save_items_registrations(items.ids)
+  end
+
+  def create_keywords(registration)
     keyword_list = self.keywords.split(/[[:blank:]]+/).select(&:present?)
     registration.save_keyword(keyword_list)
-    # itemの作成
-    owned_merchandise_list = self.owned_merchandises.split(/[[:blank:]]+/).select(&:present?)
-    Item.save_items(self.wanted_merchandise, owned_merchandise_list)
-    # items_registrations(中間テーブル)のレコードの作成
-    items = Item.where(wanted_item: self.wanted_merchandise, owned_item: owned_merchandise_list)
-    registration.save_items_registrations(items.ids)
+  end
+
+  def create_items
+    Item.save_items(self.wanted_merchandise, self.build_owned_merchandise_list)
+  end
+
+  def build_owned_merchandise_list
+    return self.owned_merchandises.split(/[[:blank:]]+/).select(&:present?)
   end
 end
