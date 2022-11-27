@@ -7,8 +7,8 @@ class MerchandiseForm
   attribute :keywords
 
   with_options length: { maximum: 255 } do
-    validates :wanted_merchandise
-    validates :owned_merchandises
+    validates :wanted_merchandise, presence: true
+    validates :owned_merchandises, presence: true
     validates :keywords
   end
 

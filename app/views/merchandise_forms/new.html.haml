@@ -1,10 +1,14 @@
 %ul.list-group.row
-  = form_with model: @merchandise_form, class: 'col-md-8 col-12 mx-auto' do |f|
+  - # form_with url: create_merchandise_forms_path, methods: :post, class: 'col-md-8 col-12 mx-auto', local: true do |f|
+  = form_with model: @merchandise_form, methods: :post, class: 'col-md-8 col-12 mx-auto' do |f|
     .form-group.lists
       探したいグッズの情報を入力してください。
     .form-group.lists
       = f.label :求, class: 'mb-0 form-label'
       = f.text_field :wanted_merchandise, class: 'form-control', size: 100
+      - if @merchandise_form.errors.any?
+        = @merchandise_form.errors.full_messages_for(:wanted_merchandise).each do |message|
+          = message
       %small.form-text.text-muted 1キャラまで登録できます。
     .form-group.lists
       = f.label :譲, class: 'mb-0 form-label'

@@ -17,7 +17,7 @@ class MerchandiseFormsController < ApplicationController
       redirect_to root_path
     else
       flash.now[:danger] = 'グッズ情報の登録に失敗しました'
-      render action: :new
+      return render :new
     end
   end
 
@@ -38,5 +38,6 @@ class MerchandiseFormsController < ApplicationController
 
     def merchandise_form_params
       params.require(:merchandise_form).permit(:wanted_merchandise, :owned_merchandises, :keywords)
+      # params.permit(:wanted_merchandise, :owned_merchandises, :keywords, :authenticity_token, :commit)
     end
 end
